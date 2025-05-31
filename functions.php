@@ -524,32 +524,6 @@ for ($i = 1; $i <= 9; $i++) {
         'type'     => 'checkbox',
     ));
 
-    // --- 会社概要用ページID設定 ---
-    $wp_customize->add_setting('yoake_company_page_id', array(
-        'default'           => '',
-        'sanitize_callback' => 'absint',
-    ));
-    $wp_customize->add_control('yoake_company_page_id', array(
-        'label'    => __('会社概要ページID', 'yoake'),
-        'section'  => 'yoake_content_sections',
-        'type'     => 'number',
-    ));
-}
-add_action('customize_register', 'yoake_customize_register');
-
-define('YOAKE_GALLERY_MAX', 10); // 最大10件に
-
-// =====================
-// メディアURL/IDサニタイズ用ヘルパー
-// =====================
-function yoake_sanitize_media( $input ) {
-    if ( is_numeric($input) ) {
-        $url = wp_get_attachment_url( intval($input) );
-        return $url ? esc_url_raw($url) : '';
-    }
-    return esc_url_raw($input);
-}
-
 // =====================
 // 会社概要
 // =====================
@@ -584,3 +558,15 @@ $wp_customize->add_control(new WP_Customize_Control(
         'description' => '例: [{"label":"会社名","value":"〇〇株式会社"},{"label":"所在地","value":"東京都〇〇区"}]'
     )
 ));
+
+// =====================
+// メディアURL/IDサニタイズ用ヘルパー
+// =====================
+function yoake_sanitize_media( $input ) {
+    if ( is_numeric($input) ) {
+        $url = wp_get_attachment_url( intval($input) );
+        return $url ? esc_url_raw($url) : '';
+    }
+    return esc_url_raw($input);
+}
+
