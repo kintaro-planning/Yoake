@@ -20,4 +20,4 @@ jobs:
           user: ${{ secrets.SFTP_USER }}
           pass: ${{ secrets.SFTP_PASSWORD }}
           localDir: .
-          remoteDir: /kintaro-planning.co.jp/public_html/wp-content/themes/yoake
+          remoteDir: /home/kintar0/kintaro-planning.co.jp/public_html/wp-content/themes/yoake
