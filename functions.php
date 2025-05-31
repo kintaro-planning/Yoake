@@ -524,20 +524,38 @@ for ($i = 1; $i <= 9; $i++) {
         'type'     => 'checkbox',
     ));
 
-    // --- 会社概要用ページID設定 ---
-    $wp_customize->add_setting('yoake_company_page_id', array(
-        'default'           => '',
-        'sanitize_callback' => 'absint',
+    // =====================
+    // 会社概要（カスタマイザー）自由項目
+    // =====================
+    $wp_customize->add_section('yoake_company_section', array(
+        'title'    => __('会社（事業者）情報', 'yoake'),
+        'priority' => 60,
     ));
-    $wp_customize->add_control('yoake_company_page_id', array(
-        'label'    => __('会社概要ページID', 'yoake'),
-        'section'  => 'yoake_content_sections',
-        'type'     => 'number',
+    // 会社情報：リピーター配列（JSON保存／自由項目）
+    $wp_customize->add_setting('yoake_company_details', array(
+        'default'           => json_encode([]),
+        'sanitize_callback' => function($input){
+            $arr = json_decode($input, true);
+            if(!is_array($arr)) return json_encode([]);
+            // サニタイズ
+            foreach($arr as &$row){
+                $row['label'] = sanitize_text_field($row['label'] ?? '');
+                $row['value'] = sanitize_text_field($row['value'] ?? '');
+            }
+            return json_encode($arr);
+        }
     ));
-}
-add_action('customize_register', 'yoake_customize_register');
+    $wp_customize->add_control(new WP_Customize_Control(
+        $wp_customize,
+        'yoake_company_details',
+        array(
+            'label' => '会社（事業者）情報リスト（例：会社名、屋号、代表者、所在地…）',
+            'section' => 'yoake_company_section',
+            'type' => 'textarea', // JSONを直接入力
+            'description' => '例: [{"label":"会社名","value":"〇〇株式会社"},{"label":"所在地","value":"東京都〇〇区"}]'
+        )
+    ));
 
-define('YOAKE_GALLERY_MAX', 10); // 最大10件に
 
 // =====================
 // メディアURL/IDサニタイズ用ヘルパー
