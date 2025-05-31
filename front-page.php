@@ -319,6 +319,5 @@ $company_tagline = get_theme_mod('yoake_company_tagline', '');
     </div>
   </div>
 </section>
-?>
 
 <?php get_footer(); ?>
