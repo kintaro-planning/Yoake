@@ -143,6 +143,9 @@ nav#primary-menu ul li a {
   opacity: 1;
 }
 
+
+#preloader { display: none !important; }
+
 /* ---------------------------------------
    メインビジュアル（FV）
 ---------------------------------------- */
