@@ -570,3 +570,4 @@ function yoake_sanitize_media( $input ) {
     return esc_url_raw($input);
 }
 
+?>
