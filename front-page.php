@@ -286,10 +286,17 @@ $overlay_classes    = 'fv-overlay fv-text-size-' . esc_attr($fv_text_size)
 </section>
 
 <!-- 会社概要エリア -->
-<?php>
+<?php
 $company_heading = get_theme_mod('yoake_company_heading', '会社概要');
 $company_tagline = get_theme_mod('yoake_company_tagline', '');
 ?>
+<section id="company-profile" class="animate">
+  <header class="section-header">
+    <?php if (!empty($company_tagline)) : ?>
+      <p class="heading-tagline"><?php echo esc_html($company_tagline); ?></p>
+    <?php endif; ?>
+    <h2><?php echo esc_html($company_heading); ?></h2>
+  </header>
 
 <section id="company-profile" class="animate">
 <header class="section-header">
