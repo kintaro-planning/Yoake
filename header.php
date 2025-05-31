@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body <?php body_class(); ?>>
+<?php
+$preloader_image = get_theme_mod('yoake_preloader_image');
+if ($preloader_image) : ?>
+  <div id="preloader">
+    <img src="<?php echo esc_url($preloader_image); ?>" alt="Preloader">
+  </div>
+<?php endif; ?>
 <header>
   <div class="header-container">
     <div class="site-branding">

@@ -3,12 +3,6 @@
  * front-page.php
  * Yoake テーマ標準
  */
-$preloader_image = get_theme_mod('yoake_preloader_image');
-if ( $preloader_image ) : ?>
-  <div id="preloader">
-    <img src="<?php echo esc_url($preloader_image); ?>" alt="Preloader">
-  </div>
-<?php endif; ?>
 
 <?php get_header(); ?>
 
