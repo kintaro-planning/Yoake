@@ -172,6 +172,7 @@ $overlay_classes    = 'fv-overlay fv-text-size-' . esc_attr($fv_text_size)
         $service_title = get_theme_mod("yoake_service_{$i}_title", '');
         $service_desc  = get_theme_mod("yoake_service_{$i}_desc", '');
         $service_image = get_theme_mod("yoake_service_{$i}_image", '');
+        $service_link  = get_theme_mod("yoake_service_{$i}_link", ''); // ←追加！
         if (!$service_visible || (empty($service_title) && empty($service_desc) && empty($service_image))) continue;
         $layout_class  = ($i % 2 === 1) ? 'image-left' : 'image-right';
     ?>
@@ -196,6 +197,11 @@ $overlay_classes    = 'fv-overlay fv-text-size-' . esc_attr($fv_text_size)
           <?php endif; ?>
           <?php if ($service_desc) : ?>
             <p><?php echo nl2br(esc_html($service_desc)); ?></p>
+          <?php endif; ?>
+          <?php if ($service_link): ?>
+            <p>
+              <a href="<?php echo esc_url($service_link); ?>" class="service-detail-link" target="_blank" rel="noopener">詳しくはこちら</a>
+            </p>
           <?php endif; ?>
         </div>
       </div>

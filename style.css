@@ -1003,3 +1003,18 @@ main {
     font-size: 2rem;
   }
 }
+
+.service-detail-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 16px;
+  background: #0073aa;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.service-detail-link:hover {
+  background: #005c87;
+}

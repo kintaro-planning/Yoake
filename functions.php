@@ -355,7 +355,17 @@ for ($i = 1; $i <= 9; $i++) {
         'label'    => "サービス{$i} 画像",
         'section'  => 'yoake_content_sections',
     )));
-        }
+    // ★ここから追加：リンク設定★
+    $wp_customize->add_setting("yoake_service_{$i}_link", array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control("yoake_service_{$i}_link", array(
+        'label'    => "サービス{$i} 詳細リンクURL（空欄なら非表示）",
+        'section'  => 'yoake_content_sections',
+        'type'     => 'url',
+    ));
+}
         
     // --- ギャラリーエリア設定 ---
     $wp_customize->add_section('yoake_gallery_section', array(
