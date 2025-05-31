@@ -318,55 +318,55 @@ function yoake_customize_register( $wp_customize ) {
         'section'  => 'yoake_content_sections',
         'type'     => 'checkbox',
     ));
-    // サービス（事業内容）エリア：最大9件まで
-    for ($i = 1; $i <= 9; $i++) {
-        $wp_customize->add_setting("yoake_service_{$i}_visible", array(
-            'default'           => false,
-            'sanitize_callback' => 'wp_validate_boolean',
-        ));
-        $wp_customize->add_control("yoake_service_{$i}_visible", array(
-            'label'    => "サービス{$i} 表示",
-            'section'  => 'yoake_content_sections',
-            'type'     => 'checkbox',
-        ));
-        $wp_customize->add_setting("yoake_service_{$i}_title", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("yoake_service_{$i}_title", array(
-            'label'    => "サービス{$i} タイトル",
-            'section'  => 'yoake_content_sections',
-            'type'     => 'text',
-        ));
-        $wp_customize->add_setting("yoake_service_{$i}_desc", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
-        ));
-        $wp_customize->add_control("yoake_service_{$i}_desc", array(
-            'label'    => "サービス{$i} 説明",
-            'section'  => 'yoake_content_sections',
-            'type'     => 'textarea',
-        ));
-        $wp_customize->add_setting("yoake_service_{$i}_image", array(
-            'default'           => '',
-            'sanitize_callback' => 'yoake_sanitize_media',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "yoake_service_{$i}_image", array(
-            'label'    => "サービス{$i} 画像",
-            'section'  => 'yoake_content_sections',
-        )));
-        // ★ここから追加：リンク設定★
-        $wp_customize->add_setting("yoake_service_{$i}_link", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control("yoake_service_{$i}_link", array(
-            'label'    => "サービス{$i} 詳細リンクURL（空欄なら非表示）",
-            'section'  => 'yoake_content_sections',
-            'type'     => 'url',
-        ));
-    }
-
+// サービス（事業内容）エリア：最大9件まで
+for ($i = 1; $i <= 9; $i++) {
+    $wp_customize->add_setting("yoake_service_{$i}_visible", array(
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control("yoake_service_{$i}_visible", array(
+        'label'    => "サービス{$i} 表示",
+        'section'  => 'yoake_content_sections',
+        'type'     => 'checkbox',
+    ));
+    $wp_customize->add_setting("yoake_service_{$i}_title", array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control("yoake_service_{$i}_title", array(
+        'label'    => "サービス{$i} タイトル",
+        'section'  => 'yoake_content_sections',
+        'type'     => 'text',
+    ));
+    $wp_customize->add_setting("yoake_service_{$i}_desc", array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control("yoake_service_{$i}_desc", array(
+        'label'    => "サービス{$i} 説明",
+        'section'  => 'yoake_content_sections',
+        'type'     => 'textarea',
+    ));
+    $wp_customize->add_setting("yoake_service_{$i}_image", array(
+        'default'           => '',
+        'sanitize_callback' => 'yoake_sanitize_media',
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "yoake_service_{$i}_image", array(
+        'label'    => "サービス{$i} 画像",
+        'section'  => 'yoake_content_sections',
+    )));
+    // ★ここから追加：リンク設定★
+    $wp_customize->add_setting("yoake_service_{$i}_link", array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control("yoake_service_{$i}_link", array(
+        'label'    => "サービス{$i} 詳細リンクURL（空欄なら非表示）",
+        'section'  => 'yoake_content_sections',
+        'type'     => 'url',
+    ));
+}
+        
     // --- ギャラリーエリア設定 ---
     $wp_customize->add_section('yoake_gallery_section', array(
         'title'    => __('ギャラリーエリア設定', 'yoake'),
@@ -524,39 +524,17 @@ function yoake_customize_register( $wp_customize ) {
         'type'     => 'checkbox',
     ));
 
-    // =====================
-    // 会社概要（カスタマイザー）
-    // =====================
-    $wp_customize->add_section('yoake_company_section', array(
-        'title'    => __('会社（事業者）情報', 'yoake'),
-        'priority' => 60,
+    // --- 会社概要用ページID設定 ---
+    $wp_customize->add_setting('yoake_company_page_id', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
     ));
-    // 会社情報：リピーター配列（JSON保存）
-    $wp_customize->add_setting('yoake_company_details', array(
-        'default'           => json_encode([]),
-        'sanitize_callback' => function($input){
-            $arr = json_decode($input, true);
-            if(!is_array($arr)) return json_encode([]);
-            // サニタイズ
-            foreach($arr as &$row){
-                $row['label'] = sanitize_text_field($row['label'] ?? '');
-                $row['value'] = sanitize_text_field($row['value'] ?? '');
-            }
-            return json_encode($arr);
-        }
+    $wp_customize->add_control('yoake_company_page_id', array(
+        'label'    => __('会社概要ページID', 'yoake'),
+        'section'  => 'yoake_content_sections',
+        'type'     => 'number',
     ));
-    $wp_customize->add_control(new WP_Customize_Control(
-        $wp_customize,
-        'yoake_company_details',
-        array(
-            'label' => '会社（事業者）情報リスト（例：会社名、屋号、代表者、所在地…）',
-            'section' => 'yoake_company_section',
-            'type' => 'textarea', // ★JSONを直接入力（あとでUI拡張可）
-            'description' => '例: [{"label":"会社名","value":"〇〇株式会社"},{"label":"所在地","value":"東京都〇〇区"}]'
-        )
-    ));
-} // ←ここでカスタマイザーの関数を閉じる
-
+}
 add_action('customize_register', 'yoake_customize_register');
 
 define('YOAKE_GALLERY_MAX', 10); // 最大10件に
@@ -571,3 +549,134 @@ function yoake_sanitize_media( $input ) {
     }
     return esc_url_raw($input);
 }
+
+// =====================
+// 会社概要リピーター（初期値は初回のみ）
+// =====================
+function yoake_add_company_repeater_meta_box() {
+    add_meta_box(
+        'yoake_company_repeater',
+        '会社概要追加項目',
+        'yoake_company_repeater_meta_box_callback',
+        'company',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'yoake_add_company_repeater_meta_box');
+
+function yoake_company_repeater_meta_box_callback($post) {
+    wp_nonce_field('yoake_save_company_repeater', 'yoake_company_repeater_nonce');
+    $company_details = get_post_meta($post->ID, '_yoake_company_repeater', true);
+    if (!is_array($company_details)) {
+        $company_details = array();
+    }
+    if (empty($company_details)) {
+        $company_details = array(
+            array('label' => '会社名', 'value' => 'デフォルト株式会社'),
+            array('label' => '設立年', 'value' => '2000'),
+            array('label' => '所在地', 'value' => '東京都'),
+            array('label' => '代表者', 'value' => '山田太郎'),
+            array('label' => '電話番号', 'value' => '03-1234-5678'),
+            array('label' => 'メールアドレス', 'value' => 'info@example.com')
+        );
+    }
+    ?>
+    <div id="yoake-company-repeater-wrapper">
+        <?php foreach ($company_details as $index => $detail) : ?>
+            <div class="yoake-company-repeater-item">
+                <p>
+                    <label>項目名:</label><br />
+                    <input type="text" name="yoake_company_repeater[<?php echo $index; ?>][label]" value="<?php echo esc_attr($detail['label']); ?>" style="width:100%;" />
+                </p>
+                <p>
+                    <label>内容:</label><br />
+                    <textarea name="yoake_company_repeater[<?php echo $index; ?>][value]" style="width:100%;" rows="3"><?php echo esc_textarea($detail['value']); ?></textarea>
+                </p>
+                <p>
+                    <button type="button" class="yoake-remove-repeater-item">削除</button>
+                </p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <p>
+        <button type="button" id="yoake-add-repeater-item">項目を追加</button>
+    </p>
+    <script>
+    jQuery(document).ready(function($) {
+        var repeaterWrapper = $('#yoake-company-repeater-wrapper');
+        var itemIndex = repeaterWrapper.children('.yoake-company-repeater-item').length;
+        $('#yoake-add-repeater-item').on('click', function(e) {
+            e.preventDefault();
+            var newItem = '<div class="yoake-company-repeater-item">' +
+                          '<p><label>項目名:</label><br />' +
+                          '<input type="text" name="yoake_company_repeater[' + itemIndex + '][label]" value="" style="width:100%;" /></p>' +
+                          '<p><label>内容:</label><br />' +
+                          '<textarea name="yoake_company_repeater[' + itemIndex + '][value]" style="width:100%;" rows="3"></textarea></p>' +
+                          '<p><button type="button" class="yoake-remove-repeater-item">削除</button></p>' +
+                          '</div>';
+            repeaterWrapper.append(newItem);
+            itemIndex++;
+        });
+        repeaterWrapper.on('click', '.yoake-remove-repeater-item', function(e) {
+            e.preventDefault();
+            $(this).closest('.yoake-company-repeater-item').remove();
+        });
+    });
+    </script>
+    <style>
+    .yoake-company-repeater-item {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #f9f9f9;
+    }
+    #yoake-add-repeater-item {
+        background: #0073aa;
+        color: #fff;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .yoake-remove-repeater-item {
+        background: #d00;
+        color: #fff;
+        padding: 4px 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    </style>
+    <?php
+}
+
+function yoake_save_company_repeater_meta_box($post_id) {
+    if (!isset($_POST['yoake_company_repeater_nonce']) || !wp_verify_nonce($_POST['yoake_company_repeater_nonce'], 'yoake_save_company_repeater')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    if (isset($_POST['yoake_company_repeater']) && is_array($_POST['yoake_company_repeater'])) {
+        $company_details = array();
+        foreach ($_POST['yoake_company_repeater'] as $detail) {
+            if (empty($detail['label']) && empty($detail['value'])) {
+                continue;
+            }
+            $company_details[] = array(
+                'label' => sanitize_text_field($detail['label']),
+                'value' => sanitize_text_field($detail['value'])
+            );
+        }
+        update_post_meta($post_id, '_yoake_company_repeater', $company_details);
+    } else {
+        delete_post_meta($post_id, '_yoake_company_repeater');
+    }
+}
+add_action('save_post', 'yoake_save_company_repeater_meta_box');
+
+?>
