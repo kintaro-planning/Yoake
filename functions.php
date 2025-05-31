@@ -318,7 +318,45 @@ function yoake_customize_register( $wp_customize ) {
         'section'  => 'yoake_content_sections',
         'type'     => 'checkbox',
     ));
-
+// サービス（事業内容）エリア：最大9件まで
+for ($i = 1; $i <= 9; $i++) {
+    $wp_customize->add_setting("yoake_service_{$i}_visible", array(
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control("yoake_service_{$i}_visible", array(
+        'label'    => "サービス{$i} 表示",
+        'section'  => 'yoake_content_sections',
+        'type'     => 'checkbox',
+    ));
+    $wp_customize->add_setting("yoake_service_{$i}_title", array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control("yoake_service_{$i}_title", array(
+        'label'    => "サービス{$i} タイトル",
+        'section'  => 'yoake_content_sections',
+        'type'     => 'text',
+    ));
+    $wp_customize->add_setting("yoake_service_{$i}_desc", array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control("yoake_service_{$i}_desc", array(
+        'label'    => "サービス{$i} 説明",
+        'section'  => 'yoake_content_sections',
+        'type'     => 'textarea',
+    ));
+    $wp_customize->add_setting("yoake_service_{$i}_image", array(
+        'default'           => '',
+        'sanitize_callback' => 'yoake_sanitize_media',
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "yoake_service_{$i}_image", array(
+        'label'    => "サービス{$i} 画像",
+        'section'  => 'yoake_content_sections',
+    )));
+        }
+        
     // --- ギャラリーエリア設定 ---
     $wp_customize->add_section('yoake_gallery_section', array(
         'title'    => __('ギャラリーエリア設定', 'yoake'),
@@ -630,44 +668,5 @@ function yoake_save_company_repeater_meta_box($post_id) {
     }
 }
 add_action('save_post', 'yoake_save_company_repeater_meta_box');
-
-// サービス（事業内容）エリア：最大9件まで
-for ($i = 1; $i <= 9; $i++) {
-    $wp_customize->add_setting("yoake_service_{$i}_visible", array(
-        'default'           => false,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control("yoake_service_{$i}_visible", array(
-        'label'    => "サービス{$i} 表示",
-        'section'  => 'yoake_content_sections',
-        'type'     => 'checkbox',
-    ));
-    $wp_customize->add_setting("yoake_service_{$i}_title", array(
-        'default'           => '',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control("yoake_service_{$i}_title", array(
-        'label'    => "サービス{$i} タイトル",
-        'section'  => 'yoake_content_sections',
-        'type'     => 'text',
-    ));
-    $wp_customize->add_setting("yoake_service_{$i}_desc", array(
-        'default'           => '',
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control("yoake_service_{$i}_desc", array(
-        'label'    => "サービス{$i} 説明",
-        'section'  => 'yoake_content_sections',
-        'type'     => 'textarea',
-    ));
-    $wp_customize->add_setting("yoake_service_{$i}_image", array(
-        'default'           => '',
-        'sanitize_callback' => 'yoake_sanitize_media',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "yoake_service_{$i}_image", array(
-        'label'    => "サービス{$i} 画像",
-        'section'  => 'yoake_content_sections',
-    )));
-}
 
 ?>
