@@ -19,5 +19,5 @@ jobs:
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASSWORD }}
           protocol: ftps
-          server-dir: /home/kintar0/kintaro-planning.co.jp/public_html/wp-content/themes/yoake
+          server-dir: /home/kintar0/kintaro-planning.co.jp/public_html/wp-content/themes/yoake/
           local-dir: ./
