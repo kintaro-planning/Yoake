@@ -287,55 +287,26 @@ $overlay_classes    = 'fv-overlay fv-text-size-' . esc_attr($fv_text_size)
 
 <!-- 会社概要エリア -->
 <?php
-$company_query = new WP_Query( array(
-    'post_type'      => 'company',
-    'posts_per_page' => 1,
-    'orderby'        => 'date',
-    'order'          => 'DESC'
-) );
-if ( $company_query->have_posts() ) : 
-    while ( $company_query->have_posts() ) : $company_query->the_post();
-        $company_heading = get_theme_mod('yoake_heading_company');
+$company_json = get_theme_mod('yoake_company_details', '[]');
+$company_rows = json_decode($company_json, true);
+if(is_array($company_rows) && count($company_rows)):
 ?>
 <section id="company-profile" class="animate">
   <div class="company-card">
-    <div class="company-card-header">
-      <?php
-      if ( !empty( $company_heading ) ) {
-        echo '<h2>' . esc_html( $company_heading ) . '</h2>';
-      } else {
-        echo '<h2>' . get_the_title() . '</h2>';
-      }
-      ?>
-    </div>
     <div class="company-card-body">
-      <?php 
-        the_content(); 
-      ?>
-      <?php 
-      $company_details = get_post_meta( get_the_ID(), '_yoake_company_repeater', true );
-      if ( !empty($company_details) && is_array($company_details) ) : 
-      ?>
-        <dl class="company-details">
-          <?php foreach ( $company_details as $detail ) : 
-            if ( empty($detail['label']) && empty($detail['value']) ) continue; 
-          ?>
+      <dl class="company-details">
+        <?php foreach($company_rows as $row): ?>
+          <?php if(!empty($row['label']) || !empty($row['value'])): ?>
             <div class="company-detail-item">
-              <dt class="detail-label"><?php echo esc_html($detail['label']); ?></dt>
-              <dd class="detail-value"><?php echo esc_html($detail['value']); ?></dd>
+              <dt class="detail-label"><?php echo esc_html($row['label']); ?></dt>
+              <dd class="detail-value"><?php echo esc_html($row['value']); ?></dd>
             </div>
-          <?php endforeach; ?>
-        </dl>
-      <?php endif; ?>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </dl>
     </div>
   </div>
 </section>
-<?php
-    endwhile;
-    wp_reset_postdata();
-else :
-    echo '<p>会社概要の投稿が見つかりませんでした。</p>';
-endif;
-?>
+<?php endif; ?>
 
 <?php get_footer(); ?>
