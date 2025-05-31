@@ -857,7 +857,7 @@ main {
   background: #fff;
   border-radius: 0;
   box-shadow: none;
-  padding: 20px 0 48px 0;  /* ヘッダー分の上余白はheader-containerに委ねる */
+  padding: 20px 0 0 0;  /* ヘッダー分の上余白はheader-containerに委ねる */
   font-family: 'Noto Sans JP', 'Yu Gothic', 'Helvetica Neue', Arial, sans-serif;
   font-size: 18px;
   line-height: 2.0;
