@@ -286,27 +286,28 @@ $overlay_classes    = 'fv-overlay fv-text-size-' . esc_attr($fv_text_size)
 </section>
 
 <!-- 会社概要エリア -->
-<?php
-$company_json = get_theme_mod('yoake_company_details', '[]');
-$company_rows = json_decode($company_json, true);
-if(is_array($company_rows) && count($company_rows)):
-?>
 <section id="company-profile" class="animate">
   <div class="company-card">
     <div class="company-card-body">
       <dl class="company-details">
-        <?php foreach($company_rows as $row): ?>
-          <?php if(!empty($row['label']) || !empty($row['value'])): ?>
-            <div class="company-detail-item">
-              <dt class="detail-label"><?php echo esc_html($row['label']); ?></dt>
-              <dd class="detail-value"><?php echo esc_html($row['value']); ?></dd>
-            </div>
-          <?php endif; ?>
-        <?php endforeach; ?>
+        <?php
+          for($i=1; $i<=10; $i++) {
+            $label = get_theme_mod("yoake_company_label_$i", '');
+            $value = get_theme_mod("yoake_company_value_$i", '');
+            if(!empty($label) || !empty($value)):
+        ?>
+          <div class="company-detail-item">
+            <dt class="detail-label"><?php echo esc_html($label); ?></dt>
+            <dd class="detail-value"><?php echo esc_html($value); ?></dd>
+          </div>
+        <?php
+            endif;
+          }
+        ?>
       </dl>
     </div>
   </div>
 </section>
-<?php endif; ?>
+?>
 
 <?php get_footer(); ?>
