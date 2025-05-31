@@ -33,7 +33,7 @@ body {
 .header-container {
   max-width: 960px;
   margin: 0 auto;
-  padding: 20px 20px 0 20px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -853,7 +853,7 @@ main {
 /* --- シンプル記事ページデザイン 修正版 --- */
 .single-post {
   max-width: 720px;
-  margin: 40px auto;  /* 上下左右中央寄せ、他ページと統一 */
+  margin: 0 auto;  /* 上下左右中央寄せ、他ページと統一 */
   background: #fff;
   border-radius: 0;
   box-shadow: none;
