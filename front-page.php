@@ -287,6 +287,12 @@ $overlay_classes    = 'fv-overlay fv-text-size-' . esc_attr($fv_text_size)
 
 <!-- 会社概要エリア -->
 <section id="company-profile" class="animate">
+<header class="section-header">
+    <?php if (!empty($company_tagline)) : ?>
+      <p class="heading-tagline"><?php echo esc_html($company_tagline); ?></p>
+    <?php endif; ?>
+    <h2><?php echo esc_html($company_heading); ?></h2>
+  </header>
   <div class="company-card">
     <div class="company-card-body">
       <dl class="company-details">

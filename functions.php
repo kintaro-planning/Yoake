@@ -532,6 +532,34 @@ for ($i = 1; $i <= 9; $i++) {
         'priority' => 60,
     ));
 // functions.phpのカスタマイザー設定内
+// 会社概要セクション見出し・タグラインの追加（functions.php内、yoake_customize_register関数内）
+$wp_customize->add_section('yoake_company_section', array(
+    'title'    => __('会社（事業者）情報', 'yoake'),
+    'priority' => 60,
+));
+
+// 見出し（タイトル）
+$wp_customize->add_setting('yoake_company_heading', array(
+    'default'           => '会社概要',
+    'sanitize_callback' => 'sanitize_text_field',
+));
+$wp_customize->add_control('yoake_company_heading', array(
+    'label'    => __('会社概要 見出し', 'yoake'),
+    'section'  => 'yoake_company_section',
+    'type'     => 'text',
+));
+
+// サブタイトル（タグライン）
+$wp_customize->add_setting('yoake_company_tagline', array(
+    'default'           => '',
+    'sanitize_callback' => 'sanitize_text_field',
+));
+$wp_customize->add_control('yoake_company_tagline', array(
+    'label'    => __('会社概要 サブタイトル', 'yoake'),
+    'section'  => 'yoake_company_section',
+    'type'     => 'text',
+));
+
 $wp_customize->add_section('yoake_company_section', array(
     'title'    => __('会社（事業者）情報', 'yoake'),
     'priority' => 60,
