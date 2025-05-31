@@ -556,7 +556,7 @@ for ($i = 1; $i <= 9; $i++) {
         )
     ));
     }
-
+add_action('customize_register', 'yoake_customize_register');
 
 // =====================
 // メディアURL/IDサニタイズ用ヘルパー
