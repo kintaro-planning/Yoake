@@ -731,3 +731,50 @@ function yoake_save_company_repeater_meta_box($post_id) {
 }
 add_action('save_post', 'yoake_save_company_repeater_meta_box');
 
+function yoake_customize_footer_settings($wp_customize) {
+    // SNS
+    $wp_customize->add_section('yoake_footer_section', array(
+        'title'    => __('フッター設定', 'yoake'),
+        'priority' => 100,
+    ));
+    $wp_customize->add_setting('yoake_footer_twitter', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('yoake_footer_twitter', array(
+        'label'   => 'Twitter URL',
+        'section' => 'yoake_footer_section',
+        'type'    => 'url',
+    ));
+    $wp_customize->add_setting('yoake_footer_facebook', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('yoake_footer_facebook', array(
+        'label'   => 'Facebook URL',
+        'section' => 'yoake_footer_section',
+        'type'    => 'url',
+    ));
+    $wp_customize->add_setting('yoake_footer_instagram', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('yoake_footer_instagram', array(
+        'label'   => 'Instagram URL',
+        'section' => 'yoake_footer_section',
+        'type'    => 'url',
+    ));
+    // Google Map埋め込み
+    $wp_customize->add_setting('yoake_footer_map_embed', array(
+        'default' => '',
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+    $wp_customize->add_control('yoake_footer_map_embed', array(
+        'label'   => 'Google Map埋め込みタグ（iframe可）',
+        'section' => 'yoake_footer_section',
+        'type'    => 'textarea',
+        'description' => 'Googleマップのiframe埋め込みタグをそのまま貼り付けてください。',
+    ));
+}
+add_action('customize_register', 'yoake_customize_footer_settings');
+
