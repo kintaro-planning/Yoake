@@ -685,7 +685,7 @@ nav#primary-menu ul li a {
 
 /* Definition List で詳細情報を表現 */
 .company-details {
-  margin: 30px 0 0;  /* 上部に少し余白 */
+  margin: 10px 0 0;  /* 上部に少し余白 */
   padding: 0;
 }
 .company-details .company-detail-item {
