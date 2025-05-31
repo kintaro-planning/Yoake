@@ -555,6 +555,7 @@ for ($i = 1; $i <= 9; $i++) {
             'description' => '例: [{"label":"会社名","value":"〇〇株式会社"},{"label":"所在地","value":"東京都〇〇区"}]'
         )
     ));
+    }
 
 
 // =====================
@@ -696,4 +697,4 @@ function yoake_save_company_repeater_meta_box($post_id) {
     }
 }
 add_action('save_post', 'yoake_save_company_repeater_meta_box');
-}
+
