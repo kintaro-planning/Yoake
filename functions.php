@@ -560,6 +560,7 @@ for ($i = 1; $i <= 10; $i++) {
         'type' => 'text',
     ));
 }
+}
 add_action('customize_register', 'yoake_customize_register');
 
 // =====================
