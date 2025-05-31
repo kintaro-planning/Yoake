@@ -19,5 +19,5 @@ jobs:
           port: 22
           user: ${{ secrets.SFTP_USER }}
           pass: ${{ secrets.SFTP_PASSWORD }}
-          localDir: Yoake
+          localDir: .
           remoteDir: /home/kintar0/kintaro-planning.co.jp/public_html/wp-content/themes/yoake
