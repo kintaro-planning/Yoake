@@ -4,9 +4,8 @@
  * Yoake テーマ標準
  */
 
-<?php get_header(); ?>
+get_header();
 
-<?php
 $heading_font = get_theme_mod('yoake_heading_font', 'default');
 
 // メインビジュアル用の各種設定
