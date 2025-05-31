@@ -20,4 +20,4 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           protocol: ftps
           server-dir: /home/kintar0/kintaro-planning.co.jp/public_html/wp-content/themes/yoake
-          local-dir: .
+          local-dir: ./
