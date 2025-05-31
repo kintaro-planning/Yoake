@@ -531,31 +531,35 @@ for ($i = 1; $i <= 9; $i++) {
         'title'    => __('会社（事業者）情報', 'yoake'),
         'priority' => 60,
     ));
-    // 会社情報：リピーター配列（JSON保存／自由項目）
-    $wp_customize->add_setting('yoake_company_details', array(
-        'default'           => json_encode([]),
-        'sanitize_callback' => function($input){
-            $arr = json_decode($input, true);
-            if(!is_array($arr)) return json_encode([]);
-            // サニタイズ
-            foreach($arr as &$row){
-                $row['label'] = sanitize_text_field($row['label'] ?? '');
-                $row['value'] = sanitize_text_field($row['value'] ?? '');
-            }
-            return json_encode($arr);
-        }
+// functions.phpのカスタマイザー設定内
+$wp_customize->add_section('yoake_company_section', array(
+    'title'    => __('会社（事業者）情報', 'yoake'),
+    'priority' => 60,
+));
+
+for ($i = 1; $i <= 10; $i++) {
+    // 項目名
+    $wp_customize->add_setting("yoake_company_label_$i", array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
     ));
-    $wp_customize->add_control(new WP_Customize_Control(
-        $wp_customize,
-        'yoake_company_details',
-        array(
-            'label' => '会社（事業者）情報リスト（例：会社名、屋号、代表者、所在地…）',
-            'section' => 'yoake_company_section',
-            'type' => 'textarea', // JSONを直接入力
-            'description' => '例: [{"label":"会社名","value":"〇〇株式会社"},{"label":"所在地","value":"東京都〇〇区"}]'
-        )
+    $wp_customize->add_control("yoake_company_label_$i", array(
+        'label' => "項目{$i}名",
+        'section' => 'yoake_company_section',
+        'type' => 'text',
     ));
-    }
+
+    // 項目値
+    $wp_customize->add_setting("yoake_company_value_$i", array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control("yoake_company_value_$i", array(
+        'label' => "項目{$i}の内容",
+        'section' => 'yoake_company_section',
+        'type' => 'text',
+    ));
+}
 add_action('customize_register', 'yoake_customize_register');
 
 // =====================
