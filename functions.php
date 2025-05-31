@@ -400,4 +400,174 @@ function yoake_customize_register( $wp_customize ) {
         'type'     => 'text',
     ));
     $wp_customize->add_setting('yoake_heading_gallery_tagline_visible', array(
-        '
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('yoake_heading_gallery_tagline_visible', array(
+        'label'    => __('ギャラリーエリア タグライン表示', 'yoake'),
+        'section'  => 'yoake_gallery_section',
+        'type'     => 'checkbox',
+    ));
+    for ($i = 1; $i <= 20; $i++) {
+        $wp_customize->add_setting("yoake_gallery_image_{$i}", array(
+            'default'           => '',
+            'sanitize_callback' => 'yoake_sanitize_media',
+        ));
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "yoake_gallery_image_{$i}", array(
+            'label'    => __("ギャラリー画像 {$i}", 'yoake'),
+            'section'  => 'yoake_gallery_section',
+        )));
+        $wp_customize->add_setting("yoake_gallery_caption_{$i}", array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        $wp_customize->add_control("yoake_gallery_caption_{$i}", array(
+            'label'    => __("ギャラリーキャプション {$i}", 'yoake'),
+            'section'  => 'yoake_gallery_section',
+            'type'     => 'text',
+        ));
+    }
+
+    // --- 見出し設定（タグライン・フォント） ---
+    $wp_customize->add_section('yoake_headings_section', array(
+        'title'    => __('見出し設定', 'yoake'),
+        'priority' => 50,
+    ));
+    $wp_customize->add_setting('yoake_heading_font', array(
+        'default'           => 'default',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('yoake_heading_font', array(
+        'label'    => __('見出しフォント', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'select',
+        'choices'  => array(
+            'default'     => 'デフォルト',
+            'serif'       => 'セリフ体',
+            'sans'        => 'サンセリフ',
+            'roboto'      => 'Roboto',
+            'open-sans'   => 'Open Sans',
+            'montserrat'  => 'Montserrat',
+            'lato'        => 'Lato',
+        ),
+    ));
+    $wp_customize->add_setting('yoake_heading_information_tagline', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('yoake_heading_information_tagline', array(
+        'label'    => __('お知らせ見出し タグライン', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'text',
+    ));
+    $wp_customize->add_setting('yoake_heading_information_tagline_visible', array(
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('yoake_heading_information_tagline_visible', array(
+        'label'    => __('お知らせ見出し タグライン表示', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'checkbox',
+    ));
+    $wp_customize->add_setting('yoake_heading_message_tagline', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('yoake_heading_message_tagline', array(
+        'label'    => __('メッセージ見出し タグライン', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'text',
+    ));
+    $wp_customize->add_setting('yoake_heading_message_tagline_visible', array(
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('yoake_heading_message_tagline_visible', array(
+        'label'    => __('メッセージ見出し タグライン表示', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'checkbox',
+    ));
+    $wp_customize->add_setting('yoake_heading_service_tagline', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('yoake_heading_service_tagline', array(
+        'label'    => __('サービス見出し タグライン', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'text',
+    ));
+    $wp_customize->add_setting('yoake_heading_service_tagline_visible', array(
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('yoake_heading_service_tagline_visible', array(
+        'label'    => __('サービス見出し タグライン表示', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'checkbox',
+    ));
+    $wp_customize->add_setting('yoake_heading_latest_tagline', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('yoake_heading_latest_tagline', array(
+        'label'    => __('関連記事見出し タグライン', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'text',
+    ));
+    $wp_customize->add_setting('yoake_heading_latest_tagline_visible', array(
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('yoake_heading_latest_tagline_visible', array(
+        'label'    => __('関連記事見出し タグライン表示', 'yoake'),
+        'section'  => 'yoake_headings_section',
+        'type'     => 'checkbox',
+    ));
+
+    // =====================
+    // 会社概要（カスタマイザー）
+    // =====================
+    $wp_customize->add_section('yoake_company_section', array(
+        'title'    => __('会社（事業者）情報', 'yoake'),
+        'priority' => 60,
+    ));
+    // 会社情報：リピーター配列（JSON保存）
+    $wp_customize->add_setting('yoake_company_details', array(
+        'default'           => json_encode([]),
+        'sanitize_callback' => function($input){
+            $arr = json_decode($input, true);
+            if(!is_array($arr)) return json_encode([]);
+            // サニタイズ
+            foreach($arr as &$row){
+                $row['label'] = sanitize_text_field($row['label'] ?? '');
+                $row['value'] = sanitize_text_field($row['value'] ?? '');
+            }
+            return json_encode($arr);
+        }
+    ));
+    $wp_customize->add_control(new WP_Customize_Control(
+        $wp_customize,
+        'yoake_company_details',
+        array(
+            'label' => '会社（事業者）情報リスト（例：会社名、屋号、代表者、所在地…）',
+            'section' => 'yoake_company_section',
+            'type' => 'textarea', // ★JSONを直接入力（あとでUI拡張可）
+            'description' => '例: [{"label":"会社名","value":"〇〇株式会社"},{"label":"所在地","value":"東京都〇〇区"}]'
+        )
+    ));
+} // ←ここでカスタマイザーの関数を閉じる
+
+add_action('customize_register', 'yoake_customize_register');
+
+define('YOAKE_GALLERY_MAX', 10); // 最大10件に
+
+// =====================
+// メディアURL/IDサニタイズ用ヘルパー
+// =====================
+function yoake_sanitize_media( $input ) {
+    if ( is_numeric($input) ) {
+        $url = wp_get_attachment_url( intval($input) );
+        return $url ? esc_url_raw($url) : '';
+    }
+    return esc_url_raw($input);
+}
