@@ -850,17 +850,14 @@ main {
   content: none !important;
 }
 
-/* --------------------------------------------------
-   Single Post（ブログ詳細）のスタイル調整
---------------------------------------------------- */
-/* --- シンプル記事ページデザイン --- */
+/* --- シンプル記事ページデザイン 修正版 --- */
 .single-post {
   max-width: 720px;
-  margin: 64px auto 72px auto;
+  margin: 40px auto;  /* 上下左右中央寄せ、他ページと統一 */
   background: #fff;
   border-radius: 0;
   box-shadow: none;
-  padding: 0 0 48px 0;
+  padding: 20px 0 48px 0;  /* ヘッダー分の上余白はheader-containerに委ねる */
   font-family: 'Noto Sans JP', 'Yu Gothic', 'Helvetica Neue', Arial, sans-serif;
   font-size: 18px;
   line-height: 2.0;
@@ -871,7 +868,7 @@ main {
   margin-bottom: 10px;
   text-align: center;
   border: none;
-  padding-top: 36px;
+  /* padding-top: 36px; 削除：ヘッダーの余白はグローバル管理 */
 }
 
 .single-post .section-header h2 {
