@@ -3,7 +3,7 @@ Theme Name: Yoake
 Theme URI: http://example.com/yoake
 Author: Kintaro
 Author URI: http://example.com/
-Description: シンプルかつ洗練されたデザインのテーマ.
+Description: テストシンプルかつ洗練されたデザインのテーマ.
 Version: 1.0
 License: GNU General Public License v2 or later
 Text Domain: yoake
@@ -853,65 +853,132 @@ main {
 /* --------------------------------------------------
    Single Post（ブログ詳細）のスタイル調整
 --------------------------------------------------- */
+/* --- シンプル記事ページデザイン --- */
 .single-post {
-  max-width: 800px;
-  margin: 60px auto;
+  max-width: 720px;
+  margin: 64px auto 72px auto;
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  overflow: visible; /* hidden を外してスクロールできるように */
-  padding: 40px 30px;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 0 48px 0;
+  font-family: 'Noto Sans JP', 'Yu Gothic', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 2.0;
+  color: #222;
 }
 
-/* 見出し部分 */
 .single-post .section-header {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  border: none;
+  padding-top: 36px;
 }
+
 .single-post .section-header h2 {
-  font-size: 2rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  border: none;
+  background: none;
+  padding: 0;
+  letter-spacing: 0.02em;
 }
+
 .single-post .post-meta {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 8px;
+  color: #a0a0a0;
+  font-size: 0.95rem;
+  margin-bottom: 36px;
+  text-align: center;
 }
+
 .single-post .post-meta .tags {
   margin-top: 4px;
 }
 .single-post .post-meta .tags a {
-  color: #0073aa;
-  text-decoration: none;
+  color: #0168b7;
+  text-decoration: underline;
   margin-right: 6px;
+  font-size: 0.95em;
 }
 .single-post .post-meta .tags a:hover {
-  text-decoration: underline;
+  color: #00558a;
 }
 
-/* アイキャッチ画像をレスポンシブに */
+.single-post .post-featured-image {
+  margin-bottom: 40px;
+  margin-top: 16px;
+}
 .single-post .post-featured-image img {
   width: 100%;
   height: auto;
   display: block;
-  margin-bottom: 30px;
-  border-radius: 4px;
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
 }
 
-/* 本文内の画像もはみ出さないように */
+.single-post .post-content {
+  font-size: 1.13rem;
+  color: #222;
+  line-height: 2.1;
+  margin-top: 0;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+}
+
+.single-post .post-content h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-top: 2.7em;
+  margin-bottom: 1.1em;
+  border-left: 5px solid #eee;
+  padding-left: 0.75em;
+  background: none;
+}
+
+.single-post .post-content h3 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-weight: 700;
+  border: none;
+  padding-left: 0.4em;
+}
+
 .single-post .post-content img {
+  margin: 2em auto;
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 20px auto;
+  border-radius: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
 
-/* 本文テキスト */
-.single-post .post-content {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #333;
+.single-post .post-content a {
+  color: #0168b7;
+  text-decoration: underline;
+  transition: color 0.2s;
+  word-break: break-word;
+}
+.single-post .post-content a:hover {
+  color: #004e8a;
+  text-decoration: underline;
 }
 
-/* ページ分割リンク */
+.single-post .post-content ul, 
+.single-post .post-content ol {
+  margin: 2em 0 2em 2em;
+  padding-left: 1.2em;
+}
+
+.single-post .post-content blockquote {
+  border-left: 3px solid #eee;
+  margin: 2em 0;
+  padding-left: 1.2em;
+  color: #888;
+  font-size: 1.08em;
+}
+
 .single-post .page-links {
   margin-top: 40px;
   text-align: center;
@@ -929,13 +996,13 @@ main {
   background: #005c87;
 }
 
-/* スマホ対応 */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .single-post {
-    margin: 40px 20px;
-    padding: 30px 20px;
+    max-width: 97vw;
+    padding: 0 5vw 32px 5vw;
+    font-size: 17px;
   }
   .single-post .section-header h2 {
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
 }
