@@ -696,3 +696,4 @@ function yoake_save_company_repeater_meta_box($post_id) {
     }
 }
 add_action('save_post', 'yoake_save_company_repeater_meta_box');
+}
