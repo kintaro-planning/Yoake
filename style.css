@@ -1080,6 +1080,18 @@ footer {
   max-width: 100%; 
   flex: 1 1 0; 
 }
+
+@media (max-width: 768px) {
+  .footer-columns {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-col {
+    min-width: 45%;   /* 2カラムぐらいまで。もしくは100%で縦積み */
+    max-width: 100%;
+  }
+}
+
 .footer-col-title {
   font-weight: bold;
   margin-bottom: 10px;
