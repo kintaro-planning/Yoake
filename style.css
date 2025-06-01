@@ -1071,8 +1071,8 @@ footer {
   gap: 24px;
 }
 .footer-col {
-  min-width: 130px;
-  max-width: 200px;
+  min-width: 100px;  
+  max-width: 33vw; 
 }
 .footer-col-title {
   font-weight: bold;
