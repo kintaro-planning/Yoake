@@ -1,5 +1,4 @@
 <footer>
-  <footer>
   <div class="footer-inner">
     <div class="footer-sections">
       <!-- ① メニュー -->
@@ -41,19 +40,20 @@
           <?php endif;
         endfor; ?>
       </div>
-      <!-- ③ SNS -->
-      <div class="footer-social">
-        <?php if ($url = get_theme_mod('yoake_footer_twitter')): ?>
-          <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-        <?php endif; ?>
-        <?php if ($url = get_theme_mod('yoake_footer_facebook')): ?>
-          <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
-        <?php endif; ?>
-        <?php if ($url = get_theme_mod('yoake_footer_instagram')): ?>
-          <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-        <?php endif; ?>
-      </div>
     </div>
+    <!-- SNS：カラムの下に横並び -->
+    <div class="footer-social">
+      <?php if ($url = get_theme_mod('yoake_footer_twitter')): ?>
+        <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+      <?php endif; ?>
+      <?php if ($url = get_theme_mod('yoake_footer_facebook')): ?>
+        <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
+      <?php endif; ?>
+      <?php if ($url = get_theme_mod('yoake_footer_instagram')): ?>
+        <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <?php endif; ?>
+    </div>
+    <!-- ブランド -->
     <div class="footer-branding">
       <?php if (has_custom_logo()) : ?>
         <div class="footer-logo"><?php the_custom_logo(); ?></div>
