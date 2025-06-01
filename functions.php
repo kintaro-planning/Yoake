@@ -811,5 +811,6 @@ for ($col = 1; $col <= 4; $col++) {
             'type'    => 'url',
         ));
 }
+}
 add_action('customize_register', 'yoake_customize_footer_settings');
 
