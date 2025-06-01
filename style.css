@@ -1042,10 +1042,13 @@ footer {
   justify-content: center;
   gap: 12px;
   width: 100%;
-  flex: 1 1 0;
-  min-width: 0;
   max-width: 960px;
   margin: 0 auto 20px auto;
+}
+
+.footer-sections > * {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .footer-nav ul {
