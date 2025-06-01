@@ -775,6 +775,41 @@ function yoake_customize_footer_settings($wp_customize) {
         'type'    => 'textarea',
         'description' => 'Googleマップのiframe埋め込みタグをそのまま貼り付けてください。',
     ));
+    
+    // ========================
+// フッターカラム設定（最大4カラム/各カラム最大5リンク）
+// ========================
+for ($col = 1; $col <= 4; $col++) {
+    // カラムタイトル
+    $wp_customize->add_setting("yoake_footer_col{$col}_title", array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control("yoake_footer_col{$col}_title", array(
+        'label'   => "フッター カラム{$col} タイトル",
+        'section' => 'yoake_footer_section',
+        'type'    => 'text',
+    ));
+    // カラム内リンク（最大5個）
+    for ($i = 1; $i <= 5; $i++) {
+        $wp_customize->add_setting("yoake_footer_col{$col}_link{$i}_text", array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        $wp_customize->add_control("yoake_footer_col{$col}_link{$i}_text", array(
+            'label'   => "カラム{$col} リンク{$i} テキスト",
+            'section' => 'yoake_footer_section',
+            'type'    => 'text',
+        ));
+        $wp_customize->add_setting("yoake_footer_col{$col}_link{$i}_url", array(
+            'default' => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        $wp_customize->add_control("yoake_footer_col{$col}_link{$i}_url", array(
+            'label'   => "カラム{$col} リンク{$i} URL",
+            'section' => 'yoake_footer_section',
+            'type'    => 'url',
+        ));
 }
 add_action('customize_register', 'yoake_customize_footer_settings');
 

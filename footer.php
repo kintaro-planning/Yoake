@@ -1,5 +1,32 @@
 <footer>
   <div class="footer-inner">
+  <div class="footer-columns">
+  <?php for ($col = 1; $col <= 4; $col++) :
+    $title = get_theme_mod("yoake_footer_col{$col}_title");
+    // 何か入力されていればカラム表示
+    $has_links = false;
+    for ($i = 1; $i <= 5; $i++) {
+        if (get_theme_mod("yoake_footer_col{$col}_link{$i}_text") && get_theme_mod("yoake_footer_col{$col}_link{$i}_url")) {
+            $has_links = true; break;
+        }
+    }
+    if ($title || $has_links): ?>
+      <div class="footer-col">
+        <?php if ($title): ?>
+          <div class="footer-col-title"><?php echo esc_html($title); ?></div>
+        <?php endif; ?>
+        <ul>
+        <?php for ($i = 1; $i <= 5; $i++):
+            $text = get_theme_mod("yoake_footer_col{$col}_link{$i}_text");
+            $url  = get_theme_mod("yoake_footer_col{$col}_link{$i}_url");
+            if ($text && $url): ?>
+              <li><a href="<?php echo esc_url($url); ?>"><?php echo esc_html($text); ?></a></li>
+            <?php endif;
+        endfor; ?>
+        </ul>
+      </div>
+  <?php endif; endfor; ?>
+</div>
     <div class="footer-branding">
       <?php if (has_custom_logo()) : ?>
         <div class="footer-logo"><?php the_custom_logo(); ?></div>
