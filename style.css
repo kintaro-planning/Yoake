@@ -1040,7 +1040,7 @@ footer {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 40px;
+  gap: 12px;
   width: 100%;
   max-width: 960px;
   margin: 0 auto 20px auto;
