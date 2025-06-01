@@ -1140,26 +1140,6 @@ footer {
   text-align: center;
 }
 
-@media (max-width: 900px) {
-  .footer-sections {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-  .footer-social {
-    flex-direction: row;
-    gap: 14px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 12px;
-  }
-  .footer-columns {
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-  }
-  .footer-col { max-width: 90vw; }
-}
 .footer-col-title {
   font-weight: bold;
   margin-bottom: 10px;
@@ -1183,8 +1163,4 @@ footer {
 .footer-col a:hover {
   opacity: 1;
   text-decoration: underline;
-}
-@media (max-width: 800px) {
-  .footer-columns { flex-direction: column; align-items: center; }
-  .footer-col { max-width: 90vw; }
 }
