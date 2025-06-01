@@ -1039,7 +1039,7 @@ footer {
 .footer-sections {
   display: flex;
   align-items: flex-start;
-  justify-content: justify-content: center;
+  justify-content: center;
   gap: 12px;
   width: 100%;
   flex: 1 1 0;
