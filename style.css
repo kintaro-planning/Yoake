@@ -1076,8 +1076,9 @@ footer {
   gap: 24px;
 }
 .footer-col {
-  min-width: 100px;  
-  max-width: 33vw; 
+  min-width: 90px;
+  max-width: 100%; 
+  flex: 1 1 0; 
 }
 .footer-col-title {
   font-weight: bold;
