@@ -9,7 +9,7 @@
 <body <?php body_class(); ?>>
 <?php
 $preloader_image = get_theme_mod('yoake_preloader_image');
-if ($preloader_image) : ?>
+if ( is_front_page() && $preloader_image ) : ?>
   <div id="preloader">
     <img src="<?php echo esc_url($preloader_image); ?>" alt="Preloader">
   </div>
