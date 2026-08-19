@@ -6,6 +6,23 @@
 get_header();
 ?>
 
+<style>
+/* Blog article spacing: keep this scoped to single posts only */
+@media (max-width: 900px) {
+  main#main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  main#main .single-post {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+</style>
+
 <main id="main" role="main">
 
   <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
