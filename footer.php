@@ -69,6 +69,16 @@
     </div>
   </div>
 </footer>
+
+<style>
+/* Fix white-background logo blending in footer only */
+.site-footer .footer-logo--inverse img {
+  filter: grayscale(1) invert(1);
+  mix-blend-mode: screen;
+  opacity: .96;
+}
+</style>
+
 <?php wp_footer(); ?>
 </body>
 </html>
