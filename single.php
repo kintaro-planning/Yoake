@@ -12,6 +12,7 @@ get_header();
   main#main {
     padding-left: 0;
     padding-right: 0;
+    margin-bottom: 0;
   }
 
   main#main .single-post {
